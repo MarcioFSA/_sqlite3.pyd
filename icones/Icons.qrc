@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icones">
+    <file>pdf (1).png</file>
+    <file>pdf.png</file>
+  </qresource>
+</RCC>
