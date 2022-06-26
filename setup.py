@@ -2,23 +2,22 @@ import datetime
 import os
 import sqlite3
 import webbrowser
-import sys
-from bd.conectar import connectarbd
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QDate, QDateTime
+
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch, landscape, letter
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.pdfgen import canvas
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.platypus import (Frame, Paragraph, SimpleDocTemplate, Spacer,
-                                Table, TableStyle, Image)
+from reportlab.platypus import ( SimpleDocTemplate,Table, TableStyle, )
+from view import Imagens
+import sys
 
 from cx_Freeze import Executable, setup
 
 # Dependencies are automatically detected, but it might need fine tuning.
-build_exe_options = {"packages": ["os","sys"], "includes": ["PyQt5","sqlite3", "reportlab"],}
+build_exe_options = {"packages": ["os","sys","sqlite3", "reportlab","reportlab.lib","reportlab.pdfgen","reportlab.platypus","reportlab.lib.pagesizes"], "includes": ["PyQt5","reportlab","reportlab.lib","reportlab.pdfgen","reportlab.platypus","reportlab.lib.pagesizes"]}
 
 # GUI applications require a different base on Windows (the default is for
 # a console application).

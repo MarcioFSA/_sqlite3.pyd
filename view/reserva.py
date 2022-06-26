@@ -13,17 +13,14 @@ import os
 import sqlite3
 import webbrowser
 
-from bd.conectar import connectarbd
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QDate, QDateTime
+
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch, landscape, letter
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.pdfgen import canvas
-from reportlab.pdfgen.canvas import Canvas
-from reportlab.platypus import (Frame, Paragraph, SimpleDocTemplate, Spacer,
-                                Table, TableStyle, Image)
+from reportlab.platypus import ( SimpleDocTemplate,Table, TableStyle, )
 from view import Imagens
 
 
