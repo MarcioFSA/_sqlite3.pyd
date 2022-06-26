@@ -15,12 +15,14 @@ import webbrowser
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4, inch, landscape, letter
-from reportlab.pdfgen import canvas
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 
 from view import Imagens
+
+# from reportlab.lib import colors
+# from reportlab.lib.pagesizes import A4, inch, landscape, letter
+# from reportlab.pdfgen import canvas
+# from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+
 
 
 class Ui_MainWindow(object):
@@ -803,18 +805,20 @@ class Ui_MainWindow(object):
             self.txt_agenda.setText("")
             self.txt_hr_inicio.setText("")
             self.txt_hr_fim.setText("")
+            self.modoEdicao()
             #     self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
             #     self.dateEdit_2.setDateTime(QtCore.QDateTime.currentDateTime())
-            self.comboBox.setEnabled(True)
-            self.lineEdit.setEnabled(True)
-            self.lineEdit_3.setEnabled(True)
-            self.txt_obs.setEnabled(True)
-            self.comboBox_2.setEnabled(True)
-            self.txt_solicitacao.setEnabled(True)
-            self.txt_agenda.setEnabled(True)
-            self.txt_hr_inicio.setEnabled(True)
-            self.txt_hr_fim.setEnabled(True)
-            self.btn_agendar.setEnabled(True)
+        #     self.comboBox.setEnabled(True)
+        #     self.lineEdit.setEnabled(True)
+        #     self.lineEdit_3.setEnabled(True)
+        #     self.txt_obs.setEnabled(True)
+        #     self.comboBox_2.setEnabled(True)
+        #     self.txt_solicitacao.setEnabled(True)
+        #     self.txt_agenda.setEnabled(True)
+        #     self.txt_hr_inicio.setEnabled(True)
+        #     self.txt_hr_fim.setEnabled(True)
+        #     self.btn_agendar.setEnabled(True)
+        
 
     def ConfReserva(self):
 

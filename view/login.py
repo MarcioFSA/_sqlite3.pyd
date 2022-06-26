@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+
 from view import Imagens
 from view.reserva import Ui_MainWindow
 
@@ -207,7 +208,7 @@ class Ui_login(object):
 
 
         else:
-            if nome_usuario == "ti" and senha == "admhec*2015":
+            if nome_usuario == "ti" and senha == "1234":
                 self.janela = QtWidgets.QMainWindow()
                 self.view = Ui_MainWindow()
                 self.view.setupUi(self.janela)
