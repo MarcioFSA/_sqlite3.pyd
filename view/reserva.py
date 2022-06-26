@@ -11,17 +11,18 @@
 import datetime
 import os
 import sqlite3
+import sys
 import webbrowser
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
+from PyQt5.QtWidgets import QMessageBox
 
 from view import Imagens
 
-# from reportlab.lib import colors
-# from reportlab.lib.pagesizes import A4, inch, landscape, letter
-# from reportlab.pdfgen import canvas
-# from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import landscape, letter
+from reportlab.pdfgen import canvas
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 
 
 
@@ -773,7 +774,7 @@ class Ui_MainWindow(object):
 
         # self.btn_reservas.clicked.connect(self.botaoreservas)
         self.btn_pdf.clicked.connect(self.gerarPDFF)
-        self.pushButton_3.clicked.connect(self.outropdf)
+        self.pushButton_3.clicked.connect(self.terceiroPDF)
         self.btn_reservas.clicked.connect(self.botaoreservas)
         self.pushButton_2.clicked.connect(self.botaovoltar)
         self.btn_sair.clicked.connect(MainWindow.close)
@@ -805,19 +806,8 @@ class Ui_MainWindow(object):
             self.txt_agenda.setText("")
             self.txt_hr_inicio.setText("")
             self.txt_hr_fim.setText("")
-            self.modoEdicao()
-            #     self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
-            #     self.dateEdit_2.setDateTime(QtCore.QDateTime.currentDateTime())
-        #     self.comboBox.setEnabled(True)
-        #     self.lineEdit.setEnabled(True)
-        #     self.lineEdit_3.setEnabled(True)
-        #     self.txt_obs.setEnabled(True)
-        #     self.comboBox_2.setEnabled(True)
-        #     self.txt_solicitacao.setEnabled(True)
-        #     self.txt_agenda.setEnabled(True)
-        #     self.txt_hr_inicio.setEnabled(True)
-        #     self.txt_hr_fim.setEnabled(True)
-        #     self.btn_agendar.setEnabled(True)
+            self.modoInsercao()
+           
         
 
     def ConfReserva(self):
@@ -886,25 +876,7 @@ class Ui_MainWindow(object):
                     msg.setText("Reserva realizada com sucesso")
                     msg.exec()
 
-                    self.comboBox.setCurrentIndex(-1)
-                    self.lineEdit.setText("")
-                    self.lineEdit_3.setText("")
-                    self.comboBox_2.setCurrentIndex(-1)
-                    self.txt_obs.setText("")
-                    self.txt_solicitacao.setText("")
-                    self.txt_agenda.setText("")
-                    self.txt_hr_inicio.setText("")
-                    self.txt_hr_fim.setText("")
-
-                    self.comboBox.setEnabled(False)
-                    self.lineEdit.setEnabled(False)
-                    self.lineEdit_3.setEnabled(False)
-                    self.txt_obs.setEnabled(False)
-                    self.comboBox_2.setEnabled(False)
-                    self.txt_solicitacao.setEnabled(False)
-                    self.txt_agenda.setEnabled(False)
-                    self.txt_hr_inicio.setEnabled(False)
-                    self.txt_hr_fim.setEnabled(False)
+                    self.cancelarReserva()               
 
     def editarReserva(self):
             reserva_n = self.txt_consulta_reserva.text()
@@ -940,6 +912,21 @@ class Ui_MainWindow(object):
             self.btn_agendar.setEnabled(False)
             self.btn_cancelar.setEnabled(True)
             self.btn_alterarR.setEnabled(True)
+    
+    def modoInsercao(self):
+            self.comboBox.setEnabled(True)
+            self.lineEdit.setEnabled(True)
+            self.lineEdit_3.setEnabled(True)
+            self.txt_obs.setEnabled(True)
+            self.comboBox_2.setEnabled(True)
+            self.txt_solicitacao.setEnabled(True)
+            self.txt_agenda.setEnabled(True)
+            self.txt_hr_inicio.setEnabled(True)
+            self.txt_hr_fim.setEnabled(True)
+            self.btn_agendar.setEnabled(True)
+            self.btn_cancelar.setEnabled(True)
+            self.btn_alterarR.setEnabled(False)
+
 
     def pesquisar(self):
             setor = self.lineEdit_4.text()
@@ -985,25 +972,8 @@ class Ui_MainWindow(object):
             msg.setText("Dados alterados com Sucesso")
             msg.exec()
 
-            self.comboBox.setCurrentIndex(-1)
-            self.lineEdit.setText("")
-            self.lineEdit_3.setText("")
-            self.comboBox_2.setCurrentIndex(-1)
-            self.txt_obs.setText("")
-            self.txt_solicitacao.setText("")
-            self.txt_agenda.setText("")
-            self.txt_hr_inicio.setText("")
-            self.txt_hr_fim.setText("")
-
-            self.comboBox.setEnabled(False)
-            self.lineEdit.setEnabled(False)
-            self.lineEdit_3.setEnabled(False)
-            self.txt_obs.setEnabled(False)
-            self.comboBox_2.setEnabled(False)
-            self.txt_solicitacao.setEnabled(False)
-            self.txt_agenda.setEnabled(False)
-            self.txt_hr_inicio.setEnabled(False)
-            self.txt_hr_fim.setEnabled(False)
+            self.cancelarReserva()
+            
 
     def cancelarReserva(self):
 
@@ -1096,41 +1066,10 @@ class Ui_MainWindow(object):
             self.c.save()
             self.printReserva()
 
-    def outropdf(self):
-                pdf = canvas.Canvas("Reservas_setor.pdf")
-                pdf.drawImage("HEC.jpg", 50, 50)
 
-
-                self.printPorSetor()
-
-    #         self.c = canvas.Canvas("reservas.pdf")
-    #         self.c.setLineWidth(.3)
-    #         self.c.setFont('Helvetica', 12)
-    #
-    #         # doc = SimpleDocTemplate("test_report_lab.pdf", pagesize=A4, rightMargin=30,leftMargin=30, topMargin=30,bottomMargin=18)
-    #         self.c.drawString(30, 750, 'COMUNICADO OFICIAL')
-    #         self.c.drawString(30, 735, 'EMPRESAS ACME')
-    #         self.c.drawString(500, 750, "12/12/2011")
-    #         self.c.line(480, 747, 580, 747)
-    #         # self.c.setLineWidth(thinline)
-    #
-    #         self.c.drawString(275, 725, 'SALDO DEVEDOR:')
-    #         self.c.drawString(500, 725, "R$ 1.000,00")
-    #         self.c.line(378, 723, 580, 723)
-    #
-    #         self.c.drawString(30, 703, 'RECEBIDO POR:')
-    #         self.c.line(130, 700, 580, 700)
-    #         self.c.drawString(130, 703, "JOHN DOE")
-    #         flow_obj = []
-    #         # frame=Frame(20,50,50,50, showBoundary=1)
-    #         # frame.addFromList(flow_obj,self.c)
-    #
-    #         self.c.showPage()
-    #         self.c.save()
-    #         self.printReserva()
 
     def terceiroPDF(self):
-    
+
             setor = self.lineEdit_4.text()
             pdf = SimpleDocTemplate("Reservas_setor.pdf", pagesize=landscape(letter))
             flow_obj = []
@@ -1151,6 +1090,7 @@ class Ui_MainWindow(object):
             pdf.build(flow_obj)
 
             self.printPorSetor()
+
 
 
            
