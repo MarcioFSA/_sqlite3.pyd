@@ -13,14 +13,13 @@ import os
 import sqlite3
 import webbrowser
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch, landscape, letter
 from reportlab.pdfgen import canvas
-from reportlab.platypus import ( SimpleDocTemplate,Table, TableStyle, )
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+
 from view import Imagens
 
 
@@ -1150,24 +1149,5 @@ class Ui_MainWindow(object):
             self.printPorSetor()
 
 
-            # setor = self.lineEdit_4.text()
-            # pdf = SimpleDocTemplate("Reservas_setor.pdf", pagesize=landscape(letter))
-            # flow_obj = []
-            # td = [["Setor", "Solicitante", "Solicitação", "Agenda", "GLPI", "Hora_Inicio", "Hora_fim", "Status", "obs"]]
-            # banco = sqlite3.connect('Reserva_treinamento.db')
-            # sql = ("SELECT * FROM Reserva WHERE setor like '%" + str(setor) + "%' ORDER BY setor")
-            # resul = banco.execute(sql)
-            # data_row = resul.fetchall()
-            # for row in data_row:
-            #         data = [row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]]
-            #         td.append(data)
-            # table = Table(td)
-            #
-            # ts = TableStyle([("GRID", (0, 0), (-1, -1), 2, colors.black), ("BACKGROUND", (0, 0), (-1, 0), colors.grey)])
-            # table.setStyle(ts)
-            # # pdf.drawImage('HEC.jpg', 50,50)
-            # flow_obj.append(table)
-            # pdf.build(flow_obj)
-            #
-            # self.printPorSetor()
+           
 
