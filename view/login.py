@@ -208,7 +208,7 @@ class Ui_login(object):
 
 
         else:
-            if nome_usuario == "ti" and senha == "admhec*2015":
+            if nome_usuario == "ti" and senha == "1":
                 self.janela = QtWidgets.QMainWindow()
                 self.view = Ui_MainWindow()
                 self.view.setupUi(self.janela)
