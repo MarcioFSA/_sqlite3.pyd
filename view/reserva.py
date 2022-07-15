@@ -738,22 +738,23 @@ class Ui_MainWindow(object):
             if resul:
 
                     for dt in resul:
-                            data = self.dateEdit.date().getDate().__getitem__(bool(dt[3]))
-                            data_solicitacao_formatada = datetime.datetime.strptime((dt[3]), '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S')
+                            # data = self.dateEdit.date().getDate().__getitem__(bool(dt[3]))
+                            # data_solicitacao_formatada = datetime.datetime.date(int(dt[3]), '%d/%m/%Y ')
+                            # data_solicitacao_formatada = datetime.
 
                         #     self.txt_id_reserva.setText(str(dt[0]))
                             self.comboBox.setCurrentText(str(dt[1]))
                             self.lineEdit.setText(str(dt[2]))
-                            # self.dateEdit.
+                            self.dateEdit.date().setDate(self, int(dt[3]),int(dt[3]),int(dt[3]))
                         #     self.txt_solicitacao.setText(str(dt[3]))
                         #     self.txt_agenda.setText(str(dt[4]))
                         #     self.lineEdit_3.setText(str(dt[5]))
-                        #     self.timeEdit.set
+                        #     self.timeEdit.text(data_solicitacao_formatada)
                         #     self.txt_hr_fim.setText(str(dt[7]))
                         #     self.comboBox_2.setCurrentText(str(dt[8]))
                         #     self.txt_obs.setText(str(dt[9]))
                         #     self.btn_editar.setEnabled(True)
-                            print(data_solicitacao_formatada)
+                        #     print(data_solicitacao_formatada)
                             print(dt)
 
     def modoEdicao(self):
