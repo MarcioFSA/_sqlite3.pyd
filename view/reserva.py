@@ -732,20 +732,24 @@ class Ui_MainWindow(object):
             banco = sqlite3.connect('Reserva_treinamento.db')
             sql = ("SELECT * FROM Reserva WHERE Reserva_N LIKE '%" + (reserva_n) + "%'")
             resul = banco.execute(sql)
+        #     data_reservaD = datadia[8:10]
+        #     data_reservaM = 
 
             # data_agenda_formatada = datetime.datetime.strptime(data_agenda, '%d/%m/%Y')
+            
 
             if resul:
 
                     for dt in resul:
-                            # data = self.dateEdit.date().getDate().__getitem__(bool(dt[3]))
-                            # data_solicitacao_formatada = datetime.datetime.date(int(dt[3]), '%d/%m/%Y ')
-                            # data_solicitacao_formatada = datetime.
+                        data_solic = str(dt[3])
+                        data_solicD= data_solic[6:10]
+                        data_solicM= data_solic[3:5]
+                        data_solicA= data_solic[0:2]                      
 
-                        #     self.txt_id_reserva.setText(str(dt[0]))
-                            self.comboBox.setCurrentText(str(dt[1]))
-                            self.lineEdit.setText(str(dt[2]))
-                            self.dateEdit.date().setDate(self, int(dt[3]),int(dt[3]),int(dt[3]))
+        #                 #     self.txt_id_reserva.setText(str(dt[0]))
+        #                     self.comboBox.setCurrentText(str(dt[1]))
+        #                     self.lineEdit.setText(str(dt[2]))
+                        self.dateEdit.setDate(QtCore.QDate(int(data_solicD),int(data_solicM),int(data_solicA)))
                         #     self.txt_solicitacao.setText(str(dt[3]))
                         #     self.txt_agenda.setText(str(dt[4]))
                         #     self.lineEdit_3.setText(str(dt[5]))
@@ -755,7 +759,11 @@ class Ui_MainWindow(object):
                         #     self.txt_obs.setText(str(dt[9]))
                         #     self.btn_editar.setEnabled(True)
                         #     print(data_solicitacao_formatada)
-                            print(dt)
+                        print(data_solic)
+                        print(data_solicD)
+                        print(data_solicM)
+                        print(data_solicA)
+                        print(dt)
 
     def modoEdicao(self):
             self.comboBox.setEnabled(True)
